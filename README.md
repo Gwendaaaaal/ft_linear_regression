@@ -1,6 +1,6 @@
 # ft_linear_regression
 
-A 42 introductory machine-learning project for implementing univariate linear regression from first principles.
+A 42 introductory machine-learning project implementing univariate linear regression from first principles.
 
 ## Objective
 
@@ -10,35 +10,103 @@ Estimate a car's price from its mileage using:
 estimated_price(mileage) = θ₀ + θ₁ × mileage
 ```
 
-The parameters `θ₀` and `θ₁` must be learned from the supplied data with gradient descent rather than a library routine that performs the regression.
+The parameters `θ₀` and `θ₁` are learned from the supplied dataset using gradient descent, without using a library routine to perform the regression.
 
-## Repository status
+## Setup
 
-This snapshot contains only:
+Clone the repository and enter it:
 
-- `data.csv` — supplied training data
-- `en.subject.pdf` — project requirements (version 4.1)
-- `README.md` — this overview
+```bash
+git clone https://github.com/Gwendaaaaal/ft_linear_regression.git
+cd ft_linear_regression
+```
 
-No training or prediction program, saved parameters, tests, plots, or accuracy tool is currently implemented.
+Create and activate a virtual environment:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+Install the dependencies:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+To leave the virtual environment:
+
+```bash
+deactivate
+```
+
+When coming back to the project later, reactivate it with:
+
+```bash
+source .venv/bin/activate
+```
+
+## Usage
+
+### Train the model
+
+```bash
+python train.py
+```
+
+The training program:
+
+- reads the supplied dataset;
+- normalizes mileage values;
+- learns `θ₀` and `θ₁` using gradient descent;
+- reports the final RMSE;
+- saves the learned parameters and normalization values to `parameters.txt`.
+
+### Predict a price
+
+```bash
+python predict.py
+```
+
+Enter a mileage when prompted. The program loads the saved parameters, normalizes the input using the same values used during training, and prints the estimated price.
+
+Before the model has been trained, the prediction parameters default to zero.
 
 ## Dataset
 
-`data.csv` has 24 complete observations and two integer columns:
+`data.csv` contains 24 observations with two columns:
 
 | Column | Meaning | Range |
 | --- | --- | ---: |
 | `km` | Car mileage in kilometres | 22,899–240,000 |
-| `price` | Car price (currency unspecified) | 3,650–8,290 |
+| `price` | Car price | 3,650–8,290 |
 
-Rows are not sorted by mileage.
+## Implementation
 
-## Intended deliverables
+The project currently includes:
 
-A completed project should provide:
+- CSV parsing;
+- min-max normalization;
+- gradient descent;
+- parameter persistence;
+- price prediction;
+- cost tracking;
+- RMSE evaluation;
+- visualization of the dataset and fitted regression line.
 
-1. A training program that reads the dataset, learns `θ₀` and `θ₁` with gradient descent, and saves them.
-2. A prediction program that accepts mileage, loads the saved parameters, and returns an estimated price; before training, both parameters default to zero.
-3. Clear handling of invalid input and malformed data.
+The regression itself is implemented manually rather than through a machine-learning library.
 
-Optional extensions from the subject include plotting the data and fitted line, and reporting model precision. See [`en.subject.pdf`](en.subject.pdf) for authoritative requirements.
+## Project structure
+
+```text
+.
+├── data.csv
+├── en.subject.pdf
+├── linear_regression.py
+├── predict.py
+├── train.py
+├── requirements.txt
+└── README.md
+```
+
+`parameters.txt` is generated after training.

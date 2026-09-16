@@ -19,7 +19,6 @@ def train(mileages: list[float], prices: list[float]) -> tuple[float, float, flo
     theta1 = 0.0
     learning_rate = 0.1
     iterations = 5000
-    cost = 0.0
     maximum = max(mileages)
     minimum = min(mileages)
 
@@ -33,12 +32,10 @@ def train(mileages: list[float], prices: list[float]) -> tuple[float, float, flo
             error = estimate - price
             gradient_theta0 += error
             gradient_theta1 += error * mileage
-            cost += error ** 2
 
 
         gradient_theta0 /= len(mileages)
         gradient_theta1 /= len(mileages)
-        cost /= 2 * len(mileages)
         theta0 -= learning_rate * gradient_theta0
         theta1 -= learning_rate * gradient_theta1
 
