@@ -90,7 +90,6 @@ The project currently includes:
 - gradient descent;
 - parameter persistence;
 - price prediction;
-- cost tracking;
 - RMSE evaluation;
 - visualization of the dataset and fitted regression line.
 
